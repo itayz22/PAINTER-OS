@@ -105,6 +105,7 @@ export default function TradiePricingTool() {
   const [billableRatio, setBillableRatio] = useState(75);
   const [overheadWeekly, setOverheadWeekly] = useState(800);
   const [wagesCost, setWagesCost] = useState(0);
+  const [materialsCost, setMaterialsCost] = useState(0);
   const [targetMargin, setTargetMargin] = useState(25);
   const [activeTab, setActiveTab] = useState("inputs");
   const [aiInsight, setAiInsight] = useState("");
@@ -114,7 +115,7 @@ export default function TradiePricingTool() {
   // Core calculations
   const billableHoursPerWeek = (hoursPerDay * daysPerWeek * billableRatio) / 100;
   const grossRevenueWeekly = billableHoursPerWeek * hourlyRate;
-  const totalCostsWeekly = overheadWeekly + wagesCost;
+  const totalCostsWeekly = overheadWeekly + wagesCost + materialsCost;
   const grossProfitWeekly = grossRevenueWeekly - totalCostsWeekly;
   const grossMarginPct = grossRevenueWeekly > 0 ? (grossProfitWeekly / grossRevenueWeekly) * 100 : 0;
   const revenueNeededForMargin = totalCostsWeekly / (1 - targetMargin / 100);
@@ -147,6 +148,7 @@ THEIR NUMBERS:
 - Billable ratio: ${billableRatio}% (only ${billableRatio}% of time is charged to clients)
 - Weekly overhead costs: $${overheadWeekly}
 - Weekly wages/subcontractors: $${wagesCost}
+- Weekly materials/supplies: $${materialsCost}
 - Actual billable hours/week: ${billableHoursPerWeek.toFixed(1)}h
 - Weekly revenue: ${formatCurrency(grossRevenueWeekly)}
 - Weekly profit: ${formatCurrency(grossProfitWeekly)}
@@ -271,6 +273,7 @@ Keep total response under 220 words. Be direct, practical, Australian in tone. N
               <h3 style={{ fontSize: 12, fontWeight: 700, color: "#c8782a", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: 0, marginBottom: 20 }}>📦 Cost Side</h3>
               <Slider label="Weekly Overhead" value={overheadWeekly} onChange={setOverheadWeekly} min={0} max={5000} step={50} prefix="$" suffix="/wk" hint="Vehicle, insurance, tools, phone, software, materials markup — everything" />
               <Slider label="Wages & Subcontractors" value={wagesCost} onChange={setWagesCost} min={0} max={10000} step={100} prefix="$" suffix="/wk" hint="Any staff or subbies you pay weekly" />
+              <Slider label="Materials & Supplies" value={materialsCost} onChange={setMaterialsCost} min={0} max={5000} step={50} prefix="$" suffix="/wk" hint="Paint, fittings, consumables — average weekly spend" />
               <Slider label="Your Target Profit Margin" value={targetMargin} onChange={setTargetMargin} min={5} max={60} suffix="%" hint="Healthy trades businesses run 20–35%. What's your goal?" />
             </div>
             <button
@@ -417,15 +420,26 @@ Keep total response under 220 words. Be direct, practical, Australian in tone. N
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: "rgba(255,255,255,0.6)", margin: "12px 0 0" }}>No credit card. No spam. Just better margins.</p>
             </div>
 
-            <button
-              onClick={() => setActiveTab("inputs")}
-              style={{
-                width: "100%", marginTop: 12, padding: "13px",
-                background: "transparent", color: "#8a7560",
-                border: "1.5px solid #e0d4c4", borderRadius: 12, fontSize: 13,
-                fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif"
-              }}
-            >← Adjust My Numbers</button>
+            <div style={{ display: "flex", gap: 10, marginTop: 12 }}>
+              <button
+                onClick={() => setActiveTab("inputs")}
+                style={{
+                  flex: 1, padding: "13px",
+                  background: "transparent", color: "#8a7560",
+                  border: "1.5px solid #e0d4c4", borderRadius: 12, fontSize: 13,
+                  fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif"
+                }}
+              >← Adjust My Numbers</button>
+              <button
+                onClick={() => window.print()}
+                style={{
+                  flex: 1, padding: "13px",
+                  background: "transparent", color: "#8a7560",
+                  border: "1.5px solid #e0d4c4", borderRadius: 12, fontSize: 13,
+                  fontWeight: 600, cursor: "pointer", fontFamily: "'DM Sans', sans-serif"
+                }}
+              >🖨️ Print / Save PDF</button>
+            </div>
           </div>
         )}
       </div>
