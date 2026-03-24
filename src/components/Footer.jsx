@@ -22,7 +22,7 @@ export default function Footer() {
           PAINTER<span style={{ color: "#e8952e" }}>OS</span>
         </p>
         <p style={{ fontSize: 13, color: "#8a7560", margin: 0 }}>
-          Built for Australian tradies. Run your business, not just your tools.
+          Built for Australian painters. Run your business, not just your brush.
         </p>
         <p style={{ fontSize: 11, color: "#4a3a2a", margin: "16px 0 0" }}>
           © {new Date().getFullYear()} TradeOS · All prices in AUD

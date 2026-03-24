@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
 
-const TRADES = [
-  "Painter", "Electrician", "Plumber", "Builder", "Plasterer",
-  "Tiler", "Landscaper", "Flooring Installer", "Carpenter", "Roofer",
-];
-
 const GST_RATE = 0.1;
 
 const fmt = (n) =>
@@ -18,7 +13,7 @@ function newLine() {
 const UNITS = ["hr", "m²", "m", "day", "item", "allow", "m³", "kg", "L"];
 
 export default function QuoteBuilderPage() {
-  const { selectedTrade, setSelectedTrade, addQuote } = useApp();
+  const { addQuote } = useApp();
 
   const [client, setClient] = useState({ name: "", address: "", email: "", phone: "" });
   const [jobTitle, setJobTitle] = useState("");
@@ -46,7 +41,7 @@ export default function QuoteBuilderPage() {
   function handleSave() {
     addQuote({
       client,
-      trade: selectedTrade,
+      trade: "Painter",
       jobTitle,
       jobDate,
       notes,
@@ -102,39 +97,11 @@ export default function QuoteBuilderPage() {
           Quote <span style={{ color: "#e8952e" }}>Builder</span>
         </h1>
         <p style={{ color: "#8a7560", fontSize: 14, margin: 0, fontFamily: "'DM Sans', sans-serif" }}>
-          Build a professional, GST-inclusive quote in minutes.
+          Build a professional painting quote with GST in minutes.
         </p>
       </div>
 
       <div style={{ maxWidth: 860, margin: "0 auto", padding: "28px 16px", display: "flex", flexDirection: "column", gap: 20 }}>
-
-        {/* Trade */}
-        <div style={{ background: "#fffdf9", border: "1.5px solid #ede4d8", borderRadius: 20, padding: "24px 20px" }}>
-          <h2 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 700, color: "#c8782a", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 14px" }}>
-            Your Trade
-          </h2>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {TRADES.map((t) => (
-              <button
-                key={t}
-                onClick={() => setSelectedTrade(t)}
-                style={{
-                  padding: "7px 14px",
-                  borderRadius: 99,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  fontFamily: "'DM Sans', sans-serif",
-                  background: selectedTrade === t ? "#c8782a" : "#fff",
-                  color: selectedTrade === t ? "#fff" : "#6a5848",
-                  border: `1.5px solid ${selectedTrade === t ? "#c8782a" : "#e0d4c4"}`,
-                  cursor: "pointer",
-                }}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-        </div>
 
         {/* Job + Client */}
         <div style={{ background: "#fffdf9", border: "1.5px solid #ede4d8", borderRadius: 20, padding: "24px 20px" }}>

@@ -62,7 +62,7 @@ export default function Nav() {
               fontSize: 14,
             }}
           >
-            🛠️
+            🖌️
           </div>
           <span
             style={{

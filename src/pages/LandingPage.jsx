@@ -25,9 +25,9 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { value: "73%", label: "of tradies undercharge" },
-  { value: "28%", label: "average margin gap" },
-  { value: "$47k", label: "left on the table p/a" },
+  { value: "68%", label: "of painters undercharge for prep" },
+  { value: "32%", label: "average margin gap" },
+  { value: "$52k", label: "left on the table p/a" },
 ];
 
 export default function LandingPage() {
@@ -78,7 +78,7 @@ export default function LandingPage() {
                 textTransform: "uppercase",
               }}
             >
-              Free tools for Australian tradies
+              Free tools for Australian painters
             </span>
           </div>
 
@@ -107,7 +107,7 @@ export default function LandingPage() {
               marginRight: "auto",
             }}
           >
-            PAINTER-OS gives Australian tradies the numbers they need — true cost per hour,
+            PAINTER-OS gives Australian painters the numbers they need — true cost per job,
             winning quote prices, and a dashboard that keeps the business on track.
           </p>
 
@@ -191,7 +191,7 @@ export default function LandingPage() {
             margin: "0 0 48px",
           }}
         >
-          Everything a tradie needs
+          Everything a painter needs
         </h2>
 
         <div
